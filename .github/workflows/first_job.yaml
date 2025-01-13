@@ -5,13 +5,14 @@ on:
 
 jobs: 
     first_job: 
+        name: doly-k8s
         runs-on: ubuntu-latest
         steps:
-            - name: Welcome Message
-              run: echo "My first GitHu Actions Job"
+            - name: First Message
+              run: echo "Welcome to the world of CICD through Github Actions"
 
-            - name: List Files 
-              run: ls 
+            - name: List All Files including hidden
+              run: ls -la
 
-            - name: Read file 
-              run: cat dockerfile
+            - name: show present working directory 
+              run: pwd
