@@ -12,6 +12,6 @@ jobs:
 
             - name: List and Read files
               run: |
-                echo "My first GitHu Actions Job"
+                echo "My first GitHub Actions Job"
                 ls -1
                 cat dockerfile
