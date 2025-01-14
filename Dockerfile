@@ -12,4 +12,4 @@ COPY images/ /usr/share/nginx/html/images/
 # Start Nginx in the foreground
 CMD ["nginx", "-g", "daemon off;"]
 
-#------------------------------
+#----------------------------------#
