@@ -4,12 +4,16 @@ on:
   push:
     branches:
         - demo
-    paths:
-        - ./css/**
-        - ./images/**
-        - ./js/**
-        - index.html
-        - Dockerfile
+    # paths:
+    #     - ./css/**
+    #     - ./images/**
+    #     - ./js/**
+    #     - index.html
+    #     - Dockerfile
+  pull_request:
+    types: #[closed, opened]
+      - closed
+      - opened
   workflow_dispatch:
     
 env:
