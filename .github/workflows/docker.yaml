@@ -15,7 +15,7 @@ on:
   #     - closed
   #     - opened
   schedule: 
-    - cron: "*/1 * * * *"
+    - cron: "* * * * *"
   workflow_dispatch:
     
 env:
