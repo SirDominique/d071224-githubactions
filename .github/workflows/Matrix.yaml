@@ -4,27 +4,24 @@ on:
   push:
   workflow_dispatch:
 
-jobs:
-  deploy-on-ubuntu:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+jobs: 
+  deploy:
+    strategy: 
+      matrix: 
+        os: [ubuntu-latest, ubuntu-20.04, windows-latest]
+        image: [hello-world, alpine]  # Note: Use singular "image" for clarity.
+
+    runs-on: ${{ matrix.os }}
+
+    steps: 
+      - name: Set up Docker
+        run: |
+          echo "Setting up Docker on ${{ matrix.os }}"
 
       - name: Echo Docker Details
         run: docker info
 
-      - name: Run Images
-        run: docker run "hello-world"
-
-  deploy-on-windows:
-    runs-on: windows-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Echo Docker Details
-        run: docker info
-
-      - name: Run Images
-        run: docker run "hello-world"
+      - name: Run Image on ${{ matrix.os }}
+        run: |
+          echo "Running Docker image: ${{ matrix.image }}"
+          docker run ${{ matrix.image }}
