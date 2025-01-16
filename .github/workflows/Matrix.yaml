@@ -1,39 +1,22 @@
 name: Matrix Configuration
 
 on:
-  push:
+  push: 
   workflow_dispatch:
 
 jobs: 
   deploy:
     strategy: 
       matrix: 
-        include: 
-          - os: ubuntu-latest
-            image: hello-world
-          - os: ubuntu-20.04
-            image: hello-world
-          - os: windows-latest
-            image: mcr.microsoft.com/windows/nanoserver:ltsc2022
-          - os: ubuntu-latest
-            image: alpine
-          - os: ubuntu-20.04
-            image: alpine
-          - os: windows-latest
-            image: mcr.microsoft.com/windows/servercore:ltsc2022
-
+        os: [ubuntu-latest, ubuntu-20.04, windows-latest]
+        images: [hello-world, alpine]
+        exclude: 
+          - images: alpine
+            os: windows-latest
     runs-on: ${{ matrix.os }}
-
     steps: 
-      - name: Set up Docker
-        run: |
-          echo "Setting up Docker on ${{ matrix.os }}"
-
       - name: Echo Docker Details
         run: docker info
 
-      - name: Run Image on ${{ matrix.os }}
-        run: |
-          echo "Running Docker image: ${{ matrix.image }}"
-          docker run ${{ matrix.image }}
-
+      - name: Run Images on ${{ matrix.os }}
+        run: docker run ${{ matrix.images }}
