@@ -27,6 +27,4 @@ jobs:
         run: docker info
 
       - name: Run Images
-        run: docker run "hello-world"
-
-        
+        run: docker run "hello-world"    
