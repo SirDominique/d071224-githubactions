@@ -8,8 +8,19 @@ jobs:
   deploy:
     strategy: 
       matrix: 
-        os: [ubuntu-latest, ubuntu-20.04, windows-latest]
-        image: [hello-world, alpine]  # Note: Use singular "image" for clarity.
+        include: 
+          - os: ubuntu-latest
+            image: hello-world
+          - os: ubuntu-20.04
+            image: hello-world
+          - os: windows-latest
+            image: mcr.microsoft.com/windows/nanoserver:ltsc2022
+          - os: ubuntu-latest
+            image: alpine
+          - os: ubuntu-20.04
+            image: alpine
+          - os: windows-latest
+            image: mcr.microsoft.com/windows/servercore:ltsc2022
 
     runs-on: ${{ matrix.os }}
 
@@ -25,3 +36,4 @@ jobs:
         run: |
           echo "Running Docker image: ${{ matrix.image }}"
           docker run ${{ matrix.image }}
+
