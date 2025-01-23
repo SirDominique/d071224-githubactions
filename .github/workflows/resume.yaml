@@ -40,3 +40,4 @@ jobs:
             sudo rm -rf /var/www/html/*
             # Move new files to /var/www/html
             sudo mv * /var/www/html
+
